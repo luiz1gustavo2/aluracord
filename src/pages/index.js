@@ -32,7 +32,6 @@ function GlobalStyle() {
     );
 }
 
-
 function Titulo(props) {
     const Tag = props.tag || 'h1';
     return (
@@ -84,7 +83,7 @@ export default function PaginaInicial() {
                         onSubmit={function (infosDoEvento) {
                             infosDoEvento.preventDefault()
                             console.log('teste')
-                            roteamento.push('/chat')
+                            roteamento.push(`/chat?username=${username}`)
                         }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -98,7 +97,15 @@ export default function PaginaInicial() {
                         </Text>
 
                         <TextField
-                            value="Seu usuário, jogador"
+                            value={username}
+                            onChange={function (event) {
+                                console.log('usuario digitou', event.target.value);
+                                // Onde ta o valor?
+                                const valor = event.target.value;
+                                // Trocar o valor da variavel
+                                // através do React e avise quem precisa
+                                setUsername(valor);
+                            }}
                             fullWidth
                             textFieldColors={{
                                 neutral: {
